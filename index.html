@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Berliva Tax</title>
-  <meta name="description" content="Berlin’de Türkçe destekli muhasebe, vergi ve finansal işlerinizde çözüm ortağınız. Buchhaltung, Steuererklärung, Lohnabrechnung ve danışmanlık."/>
+  <meta name="description" content="Almanya’da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız. Buchhaltung, Steuererklärung, Lohnabrechnung ve danışmanlık."/>
   <link rel="icon" type="image/png" href="https://luhhj9iyn6sidt0w.public.blob.vercel-storage.com/berlivalogo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -49,8 +49,9 @@
           <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/>
           <path d="M14 30l7-12 6 8 7-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
         </svg>
-        <span class="text-lg font-semibold tracking-tight">BERLIVA</span>
+        <span class="text-lg font-semibold tracking-tight">Berliva Tax</span>
       </a>
+      <p class="text-xs text-[color:var(--muted)] mt-1" data-i="header.slogan"></p>
       <nav class="hidden items-center gap-6 md:flex text-sm">
         <a href="#about" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.about"></a>
         <a href="#services" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.services"></a>
@@ -191,10 +192,13 @@
     // --- METİN İÇERİĞİ (TR/DE/EN) ---
     const content = {
       tr: {
-        nav:{about:"Hakkımızda", clients:"Kimlere Hizmet Sunuyoruz", services:"Hizmetlerimiz", cta:"Hemen İletişime Geç"},
+        nav:{about:"Hakkımızda", clients:"Kimlere Hizmet Sunuyoruz", services:"Hizmetlerimiz", cta:"İletişime Geç"},
         hero:{
-          title:'<span class="text-[color:var(--accent)]">Berlin</span>’de Türkçe destekli muhasebe, vergi ve finansal işlerinizde çözüm ortağınız.',
+          title:'',
           subtitle:""
+        },
+          header:{
+          slogan:"Almanya’da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız."
         },
         about:{
           title:"Hakkımızda",
@@ -250,10 +254,13 @@
         placeholders:{name:"Adınız", mail:"E-postanız", msg:"Mesajınız", send:"Gönder", note:"Bu form temsili amaçlıdır. Lütfen berliva-tax@outlook.de adresine e-posta gönderin."}
       },
       de: {
-        nav:{about:"Über uns", clients:"Für wen wir arbeiten", services:"Leistungen", cta:"Jetzt kontaktieren"},
+        nav:{about:"Über uns", clients:"Für wen wir arbeiten", services:"Leistungen", cta:"Kontakt"},
         hero:{
           title:'Ihr <span class="text-[color:var(--accent)]">Berlin</span>er türkischsprachiger Partner für Buchhaltung, Steuern und finanzielle Angelegenheiten.',
           subtitle:""
+        },
+          header: {
+          slogan: "Ihr türkischsprachiger Partner für Buchhaltung und Steuerangelegenheiten in Deutschland."
         },
         about:{
           title:"Über uns",
@@ -309,10 +316,13 @@
         placeholders:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Ihre Nachricht", send:"Senden", note:"Dieses Formular ist ein Platzhalter. Bitte schreiben Sie an berliva-tax@outlook.de."}
       },
       en: {
-        nav:{about:"About", clients:"Who We Serve", services:"Services", cta:"Contact Now"},
+        nav:{about:"About", clients:"Who We Serve", services:"Services", cta:"Contact Us"},
         hero:{
           title:'Your Turkish-speaking partner for accounting, taxation, and financial matters in <span class="text-[color:var(--accent)]">Berlin</span>.',
           subtitle:""
+        },
+          header: {
+          slogan: "Your Turkish-speaking partner for accounting and tax matters in Germany."
         },
         about:{
           title:"About",
@@ -434,6 +444,7 @@
 
       // kontakt başlığındaki kişi adı/etiketleri
       document.querySelector('[data-i="contact.person"]').textContent = t.contact.person;
+      document.querySelector('[data-i="header.slogan"]').textContent = t.header.slogan;
     }
 
     document.querySelectorAll(".langbtn").forEach(btn=>{
