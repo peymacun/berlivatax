@@ -132,10 +132,22 @@
             <div class="text-lg font-semibold tracking-tight">Berliva Tax</div>
           </div>
           <div class="space-y-1 text-sm">
-            <div><span class="text-[color:var(--muted)]" data-i="contact.phoneLabel"></span>: <a class="hover:underline" href="tel:+4917662658971">+49 176 62658971</a></div>
-            <div><span class="text-[color:var(--muted)]" data-i="contact.emailLabel"></span>: <a class="hover:underline" href="mailto:berliva-tax@outlook.de">berliva-tax@outlook.de</a></div>
           <div class="pt-3 space-y-2 text-sm">
             <!-- Sosyal medya ikonları ve linkleri -->
+            <div class="flex items-center gap-2">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
+       alt="WhatsApp" class="h-4 w-4">
+  <a href="https://wa.me/4917662658971" target="_blank" class="hover:underline">
+    +49 176 62658971
+  </a>
+</div>
+       <div class="flex items-center gap-2">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftoutlook.svg" 
+       alt="E-posta" class="h-4 w-4">
+  <a href="mailto:berliva-tax@outlook.de" class="hover:underline">
+    berliva-tax@outlook.de
+  </a>
+</div>        
             <div class="flex items-center gap-2">
     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" class="h-4 w-4">
     <a href="https://youtube.com/@berlivatax?si=01U5-EGpEPaxvYb2" target="_blank" class="hover:underline">@berlivaTax</a>
@@ -233,7 +245,7 @@
             }
           ]
         },
-        contact:{title:"İletişim", text:"Sorularınız ve randevu talepleriniz için bize ulaşın.", person:"", phoneLabel:"Telefon - Sadece WhatsApp", emailLabel:"E-posta"},
+        contact:{title:"İletişim", text:"Sorularınız ve randevu talepleriniz için bize ulaşın.", person:"", emailLabel:"E-posta"},
         footer:"© 2025 Berliva Tax. Tüm hakları saklıdır.",
         placeholders:{name:"Adınız", mail:"E-postanız", msg:"Mesajınız", send:"Gönder", note:"Bu form temsili amaçlıdır. Lütfen berliva-tax@outlook.de adresine e-posta gönderin."}
       },
@@ -292,7 +304,7 @@
             }
           ]
         },
-        contact:{title:"Kontakt", text:"Schreiben oder rufen Sie uns gerne an – wir freuen uns auf Ihre Anfrage.", person:"", phoneLabel:"Telefon - Nur WhatsApp", emailLabel:"E-Mail"},
+        contact:{title:"Kontakt", text:"Schreiben oder rufen Sie uns gerne an – wir freuen uns auf Ihre Anfrage.", person:"", emailLabel:"E-Mail"},
         footer:"© 2025 Berliva Tax. Alle Rechte vorbehalten.",
         placeholders:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Ihre Nachricht", send:"Senden", note:"Dieses Formular ist ein Platzhalter. Bitte schreiben Sie an berliva-tax@outlook.de."}
       },
@@ -351,7 +363,7 @@
             }
           ]
         },
-        contact:{title:"Contact", text:"Get in touch for questions or to book an appointment.", person:"", phoneLabel:"Phone - Only WhatsApp", emailLabel:"Email"},
+        contact:{title:"Contact", text:"Get in touch for questions or to book an appointment.", person:"", emailLabel:"Email"},
         footer:"© 2025 Berliva Tax. All rights reserved.",
         placeholders:{name:"Your name", mail:"Your email", msg:"Your message", send:"Send", note:"This form is a placeholder. Please email berliva-tax@outlook.de."}
       }
@@ -422,8 +434,6 @@
 
       // kontakt başlığındaki kişi adı/etiketleri
       document.querySelector('[data-i="contact.person"]').textContent = t.contact.person;
-      document.querySelector('[data-i="contact.phoneLabel"]').textContent = t.contact.phoneLabel;
-      document.querySelector('[data-i="contact.emailLabel"]').textContent = t.contact.emailLabel;
     }
 
     document.querySelectorAll(".langbtn").forEach(btn=>{
