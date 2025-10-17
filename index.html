@@ -155,7 +155,7 @@
           </div>
         </div>
 
-        <form onsubmit="event.preventDefault()" class="grid gap-3">
+        <form id="contactForm" class="grid gap-3">
           <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="nameInput" placeholder="Adınız" required />
           <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="mailInput" placeholder="E-postanız" type="email" required />
           <textarea rows="4" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="msgInput" placeholder="Mesajınız"></textarea>
@@ -411,5 +411,40 @@
     // Initial render
     render("tr");
   </script>
+<script>
+const form = document.getElementById('contactForm');
+const note = document.getElementById('formNote');
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true; btn.textContent = 'Gönderiliyor…';
+  note.textContent = '';
+
+  const payload = {
+    name: document.getElementById('nameInput').value.trim(),
+    email: document.getElementById('mailInput').value.trim(),
+    message: document.getElementById('msgInput').value.trim()
+  };
+
+  try {
+    const r = await fetch('/api/send', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if (r.ok) {
+      note.textContent = 'Mesaj gönderildi ✔️';
+      form.reset();
+    } else {
+      note.textContent = 'Gönderilemedi ❌ Lütfen e-postayla ulaşın: berliva-tax@outlook.de';
+    }
+  } catch {
+    note.textContent = 'Ağ hatası ❌ Biraz sonra tekrar deneyin.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Gönder';
+  }
+});
+</script>
 </body>
 </html>
