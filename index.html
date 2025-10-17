@@ -9,26 +9,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      /* Kurumsal renkler */
-      --brand-bg: #ffffff;         /* beyaz arka plan */
-      --ink: #0f1e3a;              /* koyu kurumsal mavi (metin) */
-      --muted: #536074;            /* ikincil metin */
-      --accent: #1e3a8a;           /* vurgu mavisi */
+      --brand-bg:#ffffff;
+      --ink:#0f1e3a;
+      --muted:#536074;
+      --accent:#1e3a8a;
       --ring: color-mix(in oklab, var(--accent) 70%, transparent);
     }
     html{scroll-behavior:smooth}
     body{background:var(--brand-bg); color:var(--ink)}
-    .ring-accent{--tw-ring-color: var(--ring)}
-
-    /* Hizmet kartlarını pasifleştir: hover/shine yok, imleç default */
-    .svc-card{
-      cursor: default;
-      box-shadow:none;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .svc-card:hover{ box-shadow:none; transform:none }
+    .ring-accent{--tw-ring-color:var(--ring)}
+    .svc-card{cursor:default; box-shadow:none; display:flex; flex-direction:column; height:100%}
+    .svc-card:hover{box-shadow:none; transform:none}
   </style>
 </head>
 <body class="min-h-screen selection:bg-blue-200/40">
@@ -36,101 +27,95 @@
   <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
       <a href="#home" class="flex items-center gap-3">
-        <!-- Logo: kendi SVG/PNG’nizi ekleyin -->
-<img src="https://luhhj9iyn6sidt0w.public.blob.vercel-storage.com/berlivalogo.png" 
-     alt="Berliva Tax Logo" 
-     class="h-9 w-9 rounded-md">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0" stop-color="#1e3a8a"/>
-              <stop offset="1" stop-color="#0f1e3a"/>
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/>
-          <path d="M14 30l7-12 6 8 7-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+        <img src="https://luhhj9iyn6sidt0w.public.blob.vercel-storage.com/berlivalogo.png" alt="Berliva Tax Logo" class="h-9 w-9 rounded-md">
         <span class="text-2xl font-semibold tracking-tight">Berliva Tax</span>
       </a>
       <nav class="hidden items-center gap-6 md:flex text-sm">
         <a href="#about" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.about"></a>
         <a href="#services" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.services"></a>
+        <a href="#faq" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.faq"></a>
         <a href="#contact" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]" data-i="nav.cta"></a>
       </nav>
       <div class="flex items-center gap-2">
         <button data-lang="tr" class="langbtn rounded-md px-2.5 py-1.5 text-sm font-medium ring-1">TR</button>
         <button data-lang="de" class="langbtn rounded-md px-2.5 py-1.5 text-sm font-medium ring-1">DE</button>
         <button data-lang="en" class="langbtn rounded-md px-2.5 py-1.5 text-sm font-medium ring-1">EN</button>
+
+        <!-- Mobile hamburger -->
+        <button id="mobileMenuBtn"
+                class="md:hidden rounded-md p-2 ring-1 ring-slate-300"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Menüyü aç">
+          ☰
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Mobile dropdown menu -->
+  <div id="mobileMenu" class="md:hidden absolute left-4 right-4 top-[64px] z-40 hidden">
+    <div class="rounded-xl border border-slate-200 bg-white shadow-md">
+      <nav class="flex flex-col p-2 text-sm">
+        <a href="#about"    class="px-3 py-2 rounded-lg hover:bg-slate-50" data-i="nav.about"></a>
+        <a href="#services" class="px-3 py-2 rounded-lg hover:bg-slate-50" data-i="nav.services"></a>
+        <a href="#faq"      class="px-3 py-2 rounded-lg hover:bg-slate-50" data-i="nav.faq"></a>
+        <a href="#contact"  class="px-3 py-2 rounded-lg hover:bg-slate-50" data-i="nav.cta"></a>
+      </nav>
+    </div>
+  </div>
+
   <!-- HERO -->
-<section id="home" class="scroll-mt-24 py-14 md:py-20">
-  <div class="mx-auto max-w-12xl text-center px-4">
-    <h1 id="heroTitle"
-    class="text-2xl md:text-4xl font-semibold text-[color:var(--ink)] leading-snug tracking-tight max-w-3xl mx-auto"
-    data-i="hero.title">
-    </h1>
-    <p class="text-[color:var(--muted)] md:text-lg mt-4" data-i="hero.subtitle"></p>
-    <div class="sr-only">
-      Buchhaltung Steuererklärung Lohnabrechnung Finanzamt Consulting
+  <section id="home" class="scroll-mt-24 py-14 md:py-20">
+    <div class="mx-auto max-w-12xl text-center px-4">
+      <h1 id="heroTitle" class="text-2xl md:text-4xl font-semibold text-[color:var(--ink)] leading-snug tracking-tight max-w-3xl mx-auto" data-i="hero.title"></h1>
+      <p class="text-[color:var(--muted)] md:text-lg mt-4" data-i="hero.subtitle"></p>
+      <div class="sr-only">Buchhaltung Steuererklärung Lohnabrechnung Finanzamt Consulting</div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- SECTION 1: HAKKIMIZDA -->
-<section id="about" class="scroll-mt-24 py-14 md:py-20">
-  <div class="mx-auto max-w-6xl px-4 md:px-6 grid gap-10 md:grid-cols-2 items-center">
-    <!-- FOTO: EL SIKIŞMA -->
-    <div>
-      <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <img
-          src="https://images.unsplash.com/photo-1752159684779-0639174cdfac?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1742"
-          alt="Berliva danışmanlık"
-          class="h-full w-full object-cover"
-          loading="lazy"
-        />
+  <!-- ABOUT -->
+  <section id="about" class="scroll-mt-24 py-14 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 md:px-6 grid gap-10 md:grid-cols-2 items-center">
+      <div>
+        <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <img src="https://images.unsplash.com/photo-1752159684779-0639174cdfac?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1742" alt="Berliva danışmanlık" class="h-full w-full object-cover" loading="lazy"/>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight" data-i="about.title"></h2>
+        <p class="mt-4 text-[color:var(--muted)] md:text-lg" data-i="about.body"></p>
       </div>
     </div>
+  </section>
 
-    <!-- METİN: HAKKIMIZDA -->
-    <div>
-      <h2 class="text-2xl font-semibold tracking-tight" data-i="about.title"></h2>
-      <p class="mt-4 text-[color:var(--muted)] md:text-lg" data-i="about.body"></p>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 2: KİMLERE HİZMET SUNUYORUZ -->
-<section id="clients" class="py-14 md:py-20">
-  <div class="mx-auto max-w-6xl px-4 md:px-6 grid gap-10 md:grid-cols-2 items-center">
-    <!-- FOTO: HESAP MAKİNESİ -->
-    <div>
-      <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <img
-          src="https://plus.unsplash.com/premium_photo-1678374803542-cc8aa0ae28b1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0"
-          alt="Hesap makinesi"
-          class="h-full w-full object-cover"
-          loading="lazy"
-        />
+  <!-- CLIENTS -->
+  <section id="clients" class="py-14 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 md:px-6 grid gap-10 md:grid-cols-2 items-center">
+      <div>
+        <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <img src="https://plus.unsplash.com/premium_photo-1678374803542-cc8aa0ae28b1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Hesap makinesi" class="h-full w-full object-cover" loading="lazy"/>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight" data-i="clients.title"></h2>
+        <p class="mt-4 text-[color:var(--muted)] md:text-lg" data-i="clients.body"></p>
       </div>
     </div>
-
-    <!-- METİN: KİMLERE HİZMET SUNUYORUZ -->
-    <div>
-      <h2 class="text-2xl font-semibold tracking-tight" data-i="clients.title"></h2>
-      <p class="mt-4 text-[color:var(--muted)] md:text-lg" data-i="clients.body"></p>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- SERVICES -->
   <section id="services" class="scroll-mt-24 py-14 md:py-20">
     <div class="mx-auto max-w-6xl px-4 md:px-6">
       <h2 class="text-2xl font-semibold tracking-tight" data-i="services.title"></h2>
       <div id="servicesGrid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 items-stretch"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 py-14 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 md:px-6">
+      <h2 class="text-2xl font-semibold tracking-tight" data-i="faq.title"></h2>
+      <div id="faqList" class="mt-8 space-y-3"></div>
+      <div id="faqNote" class="mt-6 text-sm text-[color:var(--muted)]"></div>
     </div>
   </section>
 
@@ -146,36 +131,27 @@
             <div class="text-sm text-[color:var(--muted)]" data-i="contact.person"></div>
             <div class="text-lg font-semibold tracking-tight">Berliva Tax</div>
           </div>
-          <div class="space-y-1 text-sm">
           <div class="pt-3 space-y-2 text-sm">
-            <!-- Sosyal medya ikonları ve linkleri -->
             <div class="flex items-center gap-2">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" 
-       alt="WhatsApp" class="h-4 w-4">
-  <a href="https://wa.me/4917662658971" target="_blank" class="hover:underline">
-    +49 176 62658971
-  </a>
-</div>
-       <div class="flex items-center gap-2">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftoutlook.svg" 
-       alt="E-posta" class="h-4 w-4">
-  <a href="mailto:berliva-tax@outlook.de" class="hover:underline">
-    berliva-tax@outlook.de
-  </a>
-</div>        
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" class="h-4 w-4">
+              <a href="https://wa.me/4917662658971" target="_blank" class="hover:underline">+49 176 62658971</a>
+            </div>
             <div class="flex items-center gap-2">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" class="h-4 w-4">
-    <a href="https://youtube.com/@berlivatax?si=01U5-EGpEPaxvYb2" target="_blank" class="hover:underline">@berlivaTax</a>
-  </div>
-  <div class="flex items-center gap-2">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" class="h-4 w-4">
-    <a href="https://www.tiktok.com/@berliva.tax?_t=ZN-90GyEAkulKY&_r=1" target="_blank" class="hover:underline">@berliva.tax</a>
-  </div>
-  <div class="flex items-center gap-2">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" class="h-4 w-4">
-    <a href="https://www.instagram.com/berliva_tax?igsh=dDM1ZWY3dGtiN2s%3D&utm_source=qr" target="_blank" class="hover:underline">@berliva_tax</a>
-  </div>
-</div>
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftoutlook.svg" alt="E-posta" class="h-4 w-4">
+              <a href="mailto:berliva-tax@outlook.de" class="hover:underline">berliva-tax@outlook.de</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" class="h-4 w-4">
+              <a href="https://youtube.com/@berlivatax?si=01U5-EGpEPaxvYb2" target="_blank" class="hover:underline">@berlivaTax</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" class="h-4 w-4">
+              <a href="https://www.tiktok.com/@berliva.tax?_t=ZN-90GyEAkulKY&_r=1" target="_blank" class="hover:underline">@berliva.tax</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" class="h-4 w-4">
+              <a href="https://www.instagram.com/berliva_tax?igsh=dDM1ZWY3dGtiN2s%3D&utm_source=qr" target="_blank" class="hover:underline">@berliva_tax</a>
+            </div>
           </div>
         </div>
 
@@ -203,64 +179,31 @@
   </footer>
 
   <script>
-    // --- METİN İÇERİĞİ (TR/DE/EN) ---
     const content = {
       tr: {
-        nav:{about:"Hakkımızda", clients:"Kimlere Hizmet Sunuyoruz", services:"Hizmetlerimiz", cta:"İletişime Geç"},
-        hero:{
-          title:`<span class="text-[color:var(--accent)]">Almanya</span>'da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız.`,
-          subtitle:""
-        },
-          header:{
-          slogan:"Almanya’da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız."
-        },
-        about:{
-          title:"Hakkımızda",
-          body:"Türkiye ve Almanya’da edindiğimiz mali tecrübelerle, her iki yapının gereklerini bilen bir ekip olarak Berliva’yı kurduk. Vergi süreçlerine hâkimiyetimizle danışanlarımıza pratik, güvenilir ve Türkçe destekli bir yol arkadaşlığı sunuyor; karmaşık finansal süreçleri sizin adınıza sadeleştiriyoruz."
-        },
-        clients:{
-          title:"Kimlere Hizmet Sunuyoruz",
-          body:"Einzelunternehmen (Gewerbe, Freelancer, Kleinunternehmen), GmbH, Personengesellschaft (GbR, KG, OHG), UG (haftungsbeschränkt), AG ve gerçek kişiler gibi farklı yasal statülere sahip kişi ve işletmelere hizmet sunuyoruz. Vergi, muhasebe ve finansal sorumluluk taşıyan her yapıya, Almanya’daki sistem çerçevesinde kapsamlı destek sağlamaktayız."
-        },
+        nav:{about:"Hakkımızda", clients:"Kimlere Hizmet Sunuyoruz", services:"Hizmetlerimiz", faq:"S.S.S.", cta:"İletişime Geç"},
+        hero:{ title:`<span class="text-[color:var(--accent)]">Almanya</span>'da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız.`, subtitle:"" },
+        header:{ slogan:"Almanya’da Türkçe destekli muhasebe ve vergi işlerinizde çözüm ortağınız." },
+        about:{ title:"Hakkımızda", body:"Türkiye ve Almanya’da edindiğimiz mali tecrübelerle, her iki yapının gereklerini bilen bir ekip olarak Berliva’yı kurduk. Vergi süreçlerine hâkimiyetimizle danışanlarımıza pratik, güvenilir ve Türkçe destekli bir yol arkadaşlığı sunuyor; karmaşık finansal süreçleri sizin adınıza sadeleştiriyoruz." },
+        clients:{ title:"Kimlere Hizmet Sunuyoruz", body:"Einzelunternehmen (Gewerbe, Freelancer, Kleinunternehmen), GmbH, Personengesellschaft (GbR, KG, OHG), UG (haftungsbeschränkt), AG ve gerçek kişiler gibi farklı yasal statülere sahip kişi ve işletmelere hizmet sunuyoruz. Vergi, muhasebe ve finansal sorumluluk taşıyan her yapıya, Almanya’daki sistem çerçevesinde kapsamlı destek sağlamaktayız." },
         services:{
           title:"Hizmetlerimiz",
           list:[
-            {
-              name:"Şirket Kuruluşu",
-              desc:`Şirketinizi kurarken ihtiyaç duyacağınız formlar, başvurular ve yasal süreçlerde size destek oluyoruz.
-              Kuruluş sürecini adım adım birlikte yönetiyoruz.`
-            },
-            {
-              name:"Dönemsel Muhasebe",
-              desc:`İşletmenizin aylık ve dönemsel muhasebe işlemleri kapsamında aşağıdaki hizmetleri sunuyoruz:
+            { name:"Şirket Kuruluşu", desc:`Şirketinizi kurarken ihtiyaç duyacağınız formlar, başvurular ve yasal süreçlerde size destek oluyoruz.
+              Kuruluş sürecini adım adım birlikte yönetiyoruz.`},
+            { name:"Dönemsel Muhasebe", desc:`İşletmenizin aylık ve dönemsel muhasebe işlemleri kapsamında aşağıdaki hizmetleri sunuyoruz:
               <ul class="mt-2 list-disc pl-5 space-y-1">
-                <li>Gelir-gider takibi</li>
-                <li>Fatura düzenleme</li>
-                <li>Resmî bildirim süreçlerinin organizasyonu</li>
-                <li>Düzenli BWA (betriebswirtschaftliche Auswertung) raporları</li>
-                <li>Vergi bildirimlerinin dijital iletimi</li>
-              </ul>`
-            },
-            {
-              name:"Bordro Hizmetleri",
-              desc:`Çalışanlarınızın (Minijob, Midijob, yarı zamanlı veya tam zamanlı istihdam) bordrolarının hazırlanması,
-              işe giriş ve çıkış işlemlerinin gerçekleştirilmesi ile yasal bildirimlerin yapılması konularında hizmet sunuyoruz.`
-            },
-            {
-              name:"Vergi Beyanı",
-              desc:`Vergi beyanınızı hazırlamanız ve vergi dairesine iletmeniz konusunda gerekli belgeleri birlikte topluyor,
-              formları doldurmanıza yardımcı oluyoruz.`
-            },
-            {
-              name:"Yıl Sonu İşlemleri (Jahresabschluss / EÜR)",
-              desc:`İşletmenizin dönem sonu kapanış işlemleri, Jahresabschluss ve Einnahmenüberschussrechnung (EÜR)
-              hazırlanması konularında destek sunuyoruz.`
-            },
-            {
-              name:"Ekonomik Planlama ve Mali Organizasyon",
-              desc:`İşletmenizin mali yapısının güçlendirilmesi amacıyla; bütçe planlaması, gider analizi ve finansal
-              organizasyon konularında danışmanlık sağlıyoruz.`
-            }
+                <li>Gelir-gider takibi</li><li>Fatura düzenleme</li><li>Resmî bildirim süreçlerinin organizasyonu</li>
+                <li>Düzenli BWA (betriebswirtschaftliche Auswertung) raporları</li><li>Vergi bildirimlerinin dijital iletimi</li>
+              </ul>`},
+            { name:"Bordro Hizmetleri", desc:`Çalışanlarınızın (Minijob, Midijob, yarı zamanlı veya tam zamanlı istihdam) bordrolarının hazırlanması,
+              işe giriş ve çıkış işlemlerinin gerçekleştirilmesi ile yasal bildirimlerin yapılması konularında hizmet sunuyoruz.`},
+            { name:"Vergi Beyanı", desc:`Vergi beyanınızı hazırlamanız ve vergi dairesine iletmeniz konusunda gerekli belgeleri birlikte topluyor,
+              formları doldurmanıza yardımcı oluyoruz.`},
+            { name:"Yıl Sonu İşlemleri (Jahresabschluss / EÜR)", desc:`İşletmenizin dönem sonu kapanış işlemleri, Jahresabschluss ve Einnahmenüberschussrechnung (EÜR)
+              hazırlanması konularında destek sunuyoruz.`},
+            { name:"Ekonomik Planlama ve Mali Organizasyon", desc:`İşletmenizin mali yapısının güçlendirilmesi amacıyla; bütçe planlaması, gider analizi ve finansal
+              organizasyon konularında danışmanlık sağlıyoruz.`}
           ]
         },
         contact:{title:"İletişim", text:"Sorularınız ve randevu talepleriniz için bize ulaşın.", person:"", emailLabel:"E-posta"},
@@ -268,61 +211,24 @@
         placeholders:{name:"Adınız", mail:"E-postanız", msg:"Mesajınız", send:"Gönder", note:"Bu form temsili amaçlıdır. Lütfen berliva-tax@outlook.de adresine e-posta gönderin."}
       },
       de: {
-        nav:{about:"Über uns", clients:"Für wen wir arbeiten", services:"Leistungen", cta:"Kontakt"},
-        hero:{
-          title:'Ihr Partner für Buchhaltung und Steuerangelegenheiten mit türkischer Unterstützung in <span class="text-[color:var(--accent)]">Deutschland</span>.',
-          subtitle:""
-        },
-          header: {
-          slogan: "Ihr türkischsprachiger Partner für Buchhaltung und Steuerangelegenheiten in Deutschland."
-        },
-        about:{
-          title:"Über uns",
-          body:"Mit Erfahrungen aus der Türkei und Deutschland haben wir Berliva als Team gegründet, das beide Systeme kennt. Wir bieten praxisnahe, verlässliche und türkischsprachige Begleitung – und vereinfachen komplexe finanzielle Abläufe für Sie."
-        },
-        clients:{
-          title:"Für wen wir arbeiten",
-          body:"Wir bieten unsere Dienstleistungen für natürliche Personen und Unternehmen mit verschiedenen rechtlichen Strukturen an – darunter: Einzelunternehmen (Gewerbe, Freelancer, Kleinunternehmen), GmbH, Personengesellschaften (GbR, KG, OHG), UG (haftungsbeschränkt), AG. Wir leisten umfassende Unterstützung im Rahmen des deutschen Systems für jede Struktur, die steuerliche und finanzielle Verantwortung trägt."
-        },
+        nav:{about:"Über uns", clients:"Für wen wir arbeiten", services:"Leistungen", faq:"FAQ", cta:"Kontakt"},
+        hero:{ title:'Ihr Partner für Buchhaltung und Steuerangelegenheiten mit türkischer Unterstützung in <span class="text-[color:var(--accent)]">Deutschland</span>.', subtitle:"" },
+        header:{ slogan:"Ihr türkischsprachiger Partner für Buchhaltung und Steuerangelegenheiten in Deutschland." },
+        about:{ title:"Über uns", body:"Mit Erfahrungen aus der Türkei und Deutschland haben wir Berliva als Team gegründet, das beide Systeme kennt. Wir bieten praxisnahe, verlässliche und türkischsprachige Begleitung – und vereinfachen komplexe finanzielle Abläufe für Sie." },
+        clients:{ title:"Für wen wir arbeiten", body:"Wir bieten unsere Dienstleistungen für natürliche Personen und Unternehmen mit verschiedenen rechtlichen Strukturen an – darunter: Einzelunternehmen (Gewerbe, Freelancer, Kleinunternehmen), GmbH, Personengesellschaften (GbR, KG, OHG), UG (haftungsbeschränkt), AG. Wir leisten umfassende Unterstützung im Rahmen des deutschen Systems für jede Struktur, die steuerliche und finanzielle Verantwortung trägt." },
         services:{
           title:"Leistungen",
           list:[
-            {
-              name:"Unterstützung beim Unternehmensgründungsprozess",
-              desc:`Wir unterstützen Sie bei allen Formularen, Anmeldungen und rechtlichen Abläufen, die Sie während der
-              Gründung Ihres Unternehmens benötigen. Den Gründungsprozess gestalten wir gemeinsam – Schritt für Schritt.`
-            },
-            {
-              name:"Laufende Buchhaltungsdienstleistungen",
-              desc:`Im Rahmen der monatlichen und periodischen Buchhaltung Ihres Unternehmens bieten wir folgende Leistungen an:
+            { name:"Unternehmensgründung", desc:`Wir unterstützen Sie bei allen Formularen, Anmeldungen und rechtlichen Abläufen während der Gründung. Schritt für Schritt gemeinsam.`},
+            { name:"Laufende Buchhaltung", desc:`Monatliche/periodische Leistungen:
               <ul class="mt-2 list-disc pl-5 space-y-1">
-                <li>Einnahmen- und Ausgabenverfolgung</li>
-                <li>Erstellung von Rechnungen</li>
-                <li>Organisation von behördlichen Meldeverfahren</li>
-                <li>Regelmäßige Erstellung von BWA-Berichten</li>
-                <li>Digitale Übermittlung steuerlicher Meldungen</li>
-              </ul>`
-            },
-            {
-              name:"Lohnabrechnung (Gehaltsabrechnung)",
-              desc:`Wir erstellen die Lohnabrechnungen für Ihre Mitarbeiter:innen (Minijob, Midijob, Teilzeit- oder Vollzeitbeschäftigungen),
-              übernehmen An- und Abmeldungen sowie alle gesetzlich vorgeschriebenen Meldungen.`
-            },
-            {
-              name:"Unterstützung bei Steuererklärungen",
-              desc:`Wir helfen Ihnen bei der Vorbereitung Ihrer Steuererklärung – von der Zusammenstellung der notwendigen
-              Unterlagen bis zur Ausfüllung der relevanten Formulare.`
-            },
-            {
-              name:"Jahresabschluss / EÜR",
-              desc:`Darüber hinaus unterstützen wir bei periodischen Abschlussarbeiten wie dem Jahresabschluss oder der
-              Einnahmenüberschussrechnung (EÜR).`
-            },
-            {
-              name:"Wirtschaftliche Planung & Finanzorganisation",
-              desc:`Zur Stärkung Ihrer Unternehmensstruktur bieten wir Beratungen in folgenden Bereichen an:
-              Budgetplanung, Kostenanalyse und strategische Finanzorganisation.`
-            }
+                <li>Einnahmen-/Ausgaben</li><li>Rechnungen</li><li>Behördliche Meldungen</li>
+                <li>Regelmäßige BWA</li><li>Digitale Steuer-Übermittlungen</li>
+              </ul>`},
+            { name:"Lohnabrechnung", desc:`Lohnabrechnungen, An-/Abmeldungen und gesetzliche Meldungen für Minijob, Midijob, Teil- und Vollzeit.`},
+            { name:"Steuererklärungen", desc:`Unterlagen bündeln, Formulare ausfüllen, fristgerecht einreichen.`},
+            { name:"Jahresabschluss / EÜR", desc:`Abschlussarbeiten inkl. Jahresabschluss oder Einnahmenüberschussrechnung.`},
+            { name:"Wirtschaftliche Planung", desc:`Budgetplanung, Kostenanalyse, Finanzorganisation.`}
           ]
         },
         contact:{title:"Kontakt", text:"Schreiben oder rufen Sie uns gerne an – wir freuen uns auf Ihre Anfrage.", person:"", emailLabel:"E-Mail"},
@@ -330,61 +236,24 @@
         placeholders:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Ihre Nachricht", send:"Senden", note:"Dieses Formular ist ein Platzhalter. Bitte schreiben Sie an berliva-tax@outlook.de."}
       },
       en: {
-        nav:{about:"About", clients:"Who We Serve", services:"Services", cta:"Contact Us"},
-        hero:{
-          title:'Your Turkish speaking partner for accounting, taxation, and financial matters in <span class="text-[color:var(--accent)]">Germany</span>.',
-          subtitle:""
-        },
-          header: {
-          slogan: "Your Turkish-speaking partner for accounting and tax matters in Germany."
-        },
-        about:{
-          title:"About",
-          body:"With experience from both Turkey and Germany, we founded Berliva as a team that understands both systems. We provide practical, reliable, Turkish-speaking support and simplify complex financial processes on your behalf."
-        },
-        clients:{
-          title:"Who We Serve",
-          body:"We provide services to individuals and businesses with various legal structures, including: Sole proprietorships (Gewerbe, freelancers, small businesses), GmbH, partnerships (GbR, KG, OHG), UG (limited liability), AG, and private individuals. We offer comprehensive support within the framework of the German system for all entities bearing tax and financial responsibilities."
-        },
+        nav:{about:"About", clients:"Who We Serve", services:"Services", faq:"FAQ", cta:"Contact Us"},
+        hero:{ title:'Your Turkish speaking partner for accounting, taxation, and financial matters in <span class="text-[color:var(--accent)]">Germany</span>.', subtitle:"" },
+        header:{ slogan:"Your Turkish-speaking partner for accounting and tax matters in Germany." },
+        about:{ title:"About", body:"With experience from both Turkey and Germany, we founded Berliva as a team that understands both systems. We provide practical, reliable, Turkish-speaking support and simplify complex financial processes on your behalf." },
+        clients:{ title:"Who We Serve", body:"We provide services to individuals and businesses with various legal structures, including: Sole proprietorships (Gewerbe, freelancers, small businesses), GmbH, partnerships (GbR, KG, OHG), UG (limited liability), AG, and private individuals. We offer comprehensive support within the framework of the German system for all entities bearing tax and financial responsibilities." },
         services:{
           title:"Our Services",
           list:[
-            {
-              name:"Company Formation Support",
-              desc:`We assist you with the forms, registrations, and legal procedures required to start your business.
-              We guide you through each step of the formation process.`
-            },
-            {
-              name:"Ongoing Accounting Services",
-              desc:`As part of your company’s monthly and periodic accounting, we provide:
+            { name:"Company Formation Support", desc:`Forms, registrations, and legal procedures to start your business. Step-by-step guidance.`},
+            { name:"Ongoing Accounting Services", desc:`Monthly/periodic:
               <ul class="mt-2 list-disc pl-5 space-y-1">
-                <li>Income and expense tracking</li>
-                <li>Invoice issuance</li>
-                <li>Organization of official reporting procedures</li>
-                <li>Regular preparation of financial reports (BWA)</li>
-                <li>Electronic submission of tax declarations</li>
-              </ul>`
-            },
-            {
-              name:"Payroll Services",
-              desc:`We prepare payrolls for your employees (Minijob, Midijob, part-time, or full-time employment),
-              including registrations, deregistrations, and all legally required notifications.`
-            },
-            {
-              name:"Tax Declaration Support",
-              desc:`We assist you in preparing your tax declaration – from gathering the necessary documents
-              to completing the relevant forms.`
-            },
-            {
-              name:"Year-End / EÜR Preparation",
-              desc:`We also support you in year-end closing procedures, including annual financial statements
-              or the income-surplus calculation (EÜR).`
-            },
-            {
-              name:"Financial Planning & Organization",
-              desc:`To strengthen your financial structure, we offer guidance in the following areas:
-              Budget planning, expense analysis, and strategic financial organization.`
-            }
+                <li>Income/expense tracking</li><li>Invoice issuance</li><li>Official reporting</li>
+                <li>Regular BWA</li><li>E-filing of tax declarations</li>
+              </ul>`},
+            { name:"Payroll Services", desc:`Payrolls, registrations/deregistrations, and all statutory notifications.`},
+            { name:"Tax Declaration Support", desc:`Documents, forms, submission.`},
+            { name:"Year-End / EÜR", desc:`Annual closing and income-surplus statements.`},
+            { name:"Financial Planning & Organization", desc:`Budget planning, expense analysis, strategic organization.`}
           ]
         },
         contact:{title:"Contact", text:"Get in touch for questions or to book an appointment.", person:"", emailLabel:"Email"},
@@ -393,77 +262,153 @@
       }
     };
 
-    /* Hizmet görselleri (sıra: listedeki hizmet sırası ile aynı) */
     const svcImgs = [
-      // 1) Şirket Kuruluşu / Unternehmensgründung / Company Formation
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
-      // 2) Dönemsel Muhasebe / Laufende Buchhaltung / Ongoing Accounting
       "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=600&auto=format&fit=crop",
-      // 3) Bordro / Lohnabrechnung / Payroll
       "https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=600&auto=format&fit=crop",
-      // 4) Vergi Beyanı / Steuererklärungen / Tax Declarations
       "https://images.unsplash.com/photo-1534951009808-766178b47a4f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      // 5) Yıl Sonu / Jahresabschluss / Year-End
       "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop",
-      // 6) Ekonomik Danışmanlık / Planung / Financial Planning
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop"
     ];
 
-function render(lang){
-  const t = content[lang];
-  document.querySelectorAll("[data-i]").forEach(el=>{
-    const path = el.getAttribute("data-i").split(".");
-    let cur = t; path.forEach(p=>cur=cur[p]);
-    if(el.id === "heroTitle"){ el.innerHTML = cur; } else { el.textContent = cur; }
-  });
+    // Mobile menu control
+    const mBtn  = document.getElementById("mobileMenuBtn");
+    const mMenu = document.getElementById("mobileMenu");
 
-      // services grid
+    function closeMobileMenu(){
+      if(!mMenu.classList.contains("hidden")){
+        mMenu.classList.add("hidden");
+        mBtn && mBtn.setAttribute("aria-expanded","false");
+      }
+    }
+    if(mBtn){
+      mBtn.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        const hidden = mMenu.classList.toggle("hidden");
+        mBtn.setAttribute("aria-expanded", hidden ? "false" : "true");
+      });
+      document.addEventListener("click", (e)=>{
+        if(!mMenu.classList.contains("hidden") && !mMenu.contains(e.target) && e.target !== mBtn){
+          closeMobileMenu();
+        }
+      });
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMobileMenu(); });
+    }
+
+    function render(lang){
+      const t = content[lang];
+      document.querySelectorAll("[data-i]").forEach(el=>{
+        const path = el.getAttribute("data-i").split(".");
+        let cur = t; path.forEach(p=>cur=cur[p]);
+        if(el.id==="heroTitle"){ el.innerHTML = cur; } else { el.textContent = cur; }
+      });
+
       const grid = document.getElementById("servicesGrid");
       grid.innerHTML = "";
-      t.services.list.forEach((s, i)=>{
+      t.services.list.forEach((s,i)=>{
         const card = document.createElement("div");
         card.className="svc-card rounded-2xl bg-white p-5 shadow-sm h-full flex flex-col";
-        card.innerHTML=`
+        card.innerHTML = `
           <div class="grow min-h-0">
             <h3 class="text-base font-semibold tracking-tight">${s.name}</h3>
-          <div class="mt-2 text-sm text-[color:var(--muted)] leading-relaxed">${s.desc}</div>
-        </div>
-        <div class="mt-4 aspect-[16/9] w-full overflow-hidden rounded-lg shrink-0">
-          <img src="${svcImgs[i]||''}" alt="${s.name}" class="h-full w-full object-cover" loading="lazy">
-        </div>
-      `;
+            <div class="mt-2 text-sm text-[color:var(--muted)] leading-relaxed">${s.desc}</div>
+          </div>
+          <div class="mt-4 aspect-[16/9] w-full overflow-hidden rounded-lg shrink-0">
+            <img src="${svcImgs[i]||''}" alt="${s.name}" class="h-full w-full object-cover" loading="lazy">
+          </div>`;
         grid.appendChild(card);
       });
 
-      // placeholders & labels
       document.getElementById("nameInput").placeholder = t.placeholders.name;
       document.getElementById("mailInput").placeholder = t.placeholders.mail;
       document.getElementById("msgInput").placeholder = t.placeholders.msg;
-      document.getElementById("sendBtn").textContent = t.placeholders.send;
-      document.getElementById("formNote").textContent = t.placeholders.note;
-      document.getElementById("footerText").textContent = t.footer;
+      document.getElementById("sendBtn").textContent   = t.placeholders.send;
+      document.getElementById("formNote").textContent  = t.placeholders.note;
+      document.getElementById("footerText").textContent= t.footer;
 
-        // "Hakkımızda" metnini: Slogan + mevcut gövde
       const aboutBody = document.querySelector('[data-i="about.body"]');
-    if (aboutBody) aboutBody.textContent = `${t.header.slogan} ${t.about.body}`;
+      if(aboutBody) aboutBody.textContent = `${t.header.slogan} ${t.about.body}`;
 
-      // lang buttons
       document.querySelectorAll(".langbtn").forEach(b=>{
-        const active = b.getAttribute("data-lang") === lang;
+        const active = b.getAttribute("data-lang")===lang;
         b.className = "langbtn rounded-md px-2.5 py-1.5 text-sm font-medium tracking-tight ring-1 transition "
           + (active ? "bg-[color:var(--accent)] text-white ring-accent"
                     : "bg-white text-[color:var(--ink)] ring-slate-300 hover:bg-slate-50");
       });
 
-      // kontakt başlığındaki kişi adı/etiketleri
       document.querySelector('[data-i="contact.person"]').textContent = t.contact.person;
+
+      // Close mobile menu on language change
+      closeMobileMenu();
+
+      // Close on mobile-menu link click
+      mMenu.querySelectorAll("a").forEach(a=>a.onclick = closeMobileMenu);
     }
+
+    // FAQ content
+    content.tr.faq = {
+      title:"Sıkça Sorulan Sorular",
+      list:[
+        {q:"Yeni mükellef veya danışan kabul ediyor musunuz?", a:"Evet, ekibimizin şu an için kapasitesi bulunmaktadır. İşlemin türüne ve kapsamına göre yeni mükellef/danışan kabul ediyoruz."},
+        {q:"Sizin mükellefiniz veya danışanınız olmak için ne yapmam gerekiyor?", a:"Bize e-posta veya telefon yoluyla ulaştığınızda sizi arayarak durumunuzu birlikte değerlendiriyoruz. Danışmanlık veya yapılacak işlemlere göre süreç hızlı ve sorunsuz şekilde ilerlemektedir."},
+        {q:"Ücretlendirmeyi nasıl yapıyorsunuz?", a:"İlk görüşmemiz tamamen ücretsizdir. Genel olarak ücretlendirme, yapılacak işlem veya danışmanlık hizmetinin kapsamına göre belirlenir. Her işlem için net ve şeffaf bilgilendirme yapılır."},
+        {q:"Görüşmelerinizi nasıl gerçekleştiriyorsunuz?", a:"Görüşmelerimizi çoğunlukla online olarak yapıyoruz. İşlemlerimizi dijital ve kağıtsız ortamda yürütüyoruz. Bu sayede süreçler daha hızlı, kolay ve erişilebilir hale geliyor."},
+        {q:"Berlin dışında yaşıyorum. Yine de sizinle çalışabilir miyim?", a:"Evet, bu bizim için hiçbir sorun teşkil etmez. Almanya’nın herhangi bir yerinden veya yurt dışından bizimle çalışabilirsiniz. Tüm süreçler dijital olarak yürütülmektedir."}
+      ],
+      note:"👉 İlk görüşmeniz ücretsizdir.  📩 Bizimle iletişime geçerek süreci kolayca başlatabilirsiniz."
+    };
+    content.de.faq = {
+      title:"Häufig gestellte Fragen",
+      list:[
+        {q:"Nehmen Sie neue Mandanten oder Klienten an?", a:"Ja, unser Team hat derzeit Kapazitäten. Je nach Art und Umfang des Vorgangs nehmen wir neue Mandanten/Klienten an."},
+        {q:"Wie kann ich Ihr Mandant oder Klient werden?", a:"Wenn Sie uns per E-Mail oder Telefon kontaktieren, rufen wir Sie zurück und besprechen Ihre Situation gemeinsam. Je nach Beratungsbedarf verläuft der Prozess schnell und reibungslos."},
+        {q:"Wie erfolgt die Preisgestaltung?", a:"Das erste Gespräch ist kostenlos. Die Preisgestaltung richtet sich nach Art und Umfang der gewünschten Dienstleistung. Alle Kosten werden klar und transparent kommuniziert."},
+        {q:"Wie führen Sie die Gespräche durch?", a:"In der Regel online. Digital und papierlos, schnell und flexibel."},
+        {q:"Ich wohne nicht in Berlin. Kann ich trotzdem mit Ihnen zusammenarbeiten?", a:"Ja. Wir betreuen Mandanten deutschlandweit und im Ausland. Alle Prozesse erfolgen digital."}
+      ],
+      note:"👉 Das erste Gespräch ist kostenlos.  📩 Kontaktieren Sie uns, um den Prozess einfach zu starten."
+    };
+    content.en.faq = {
+      title:"Frequently Asked Questions",
+      list:[
+        {q:"Do you accept new clients?", a:"Yes, our team currently has capacity. Depending on the type and scope of the case, we accept new clients."},
+        {q:"How can I become your client?", a:"When you contact us via email or phone, we call you back to review your situation together. The process continues quickly and smoothly."},
+        {q:"How do you determine your pricing?", a:"The first consultation is completely free. Pricing depends on the type and scope of the service. All costs are communicated clearly and transparently."},
+        {q:"How do you conduct consultations?", a:"We usually conduct our consultations online. Our processes are digital and paperless."},
+        {q:"I don’t live in Berlin. Can I still work with you?", a:"Yes. We work with clients across Germany and abroad. All processes are handled digitally."}
+      ],
+      note:"👉 Your first consultation is free.  📩 Contact us to get started easily."
+    };
+
+    function renderFAQ(lang){
+      const f = content[lang].faq;
+      const list = document.getElementById("faqList");
+      const note = document.getElementById("faqNote");
+      if(!list) return;
+      list.innerHTML = "";
+      f.list.forEach((item, idx)=>{
+        const d = document.createElement("details");
+        d.className = "group rounded-xl border border-slate-200 bg-white p-4";
+        if(idx===0) d.setAttribute("open","");
+        const s = document.createElement("summary");
+        s.className = "cursor-pointer select-none text-sm font-semibold tracking-tight list-none outline-none flex items-center justify-between";
+        s.innerHTML = `<span>${item.q}</span><span class='ml-4 transition group-open:rotate-180'>▾</span>`;
+        const p = document.createElement("div");
+        p.className = "mt-3 text-sm text-[color:var(--muted)] leading-relaxed";
+        p.textContent = item.a;
+        d.appendChild(s); d.appendChild(p); list.appendChild(d);
+      });
+      if(note) note.textContent = f.note || "";
+    }
+
+    const __render_orig = render;
+    render = function(lang){ __render_orig(lang); renderFAQ(lang); };
 
     document.querySelectorAll(".langbtn").forEach(btn=>{
       btn.addEventListener("click", ()=>render(btn.getAttribute("data-lang")));
     });
 
-    // Varsayılan dil
+    // Initial render
     render("tr");
   </script>
 </body>
