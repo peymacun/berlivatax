@@ -141,7 +141,7 @@
             </div>
             <div class="flex items-center gap-2">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftoutlook.svg" alt="E-posta" class="h-4 w-4">
-              <a href="mailto:berliva-tax@outlook.de" class="hover:underline">berliva-tax@outlook.de</a>
+              <a href="mailto:info@berliva-tax.de" class="hover:underline">info@berliva-tax.de</a>
             </div>
             <div class="flex items-center gap-2">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" class="h-4 w-4">
@@ -218,7 +218,14 @@
         },
         contact:{title:"İletişim", text:"Sorularınız ve randevu talepleriniz için bize ulaşın.", person:"", emailLabel:"E-posta"},
         footer:"© 2025 Berliva Tax. Tüm hakları saklıdır.",
-        placeholders:{name:"Adınız", mail:"E-postanız", msg:"Mesajınız", send:"Gönder", note:""}
+        placeholders:{
+          name:"Adınız",
+          mail:"E-postanız",
+          msg:"Mesajınız",
+          send:"Gönder",
+          note:"",
+          privacy:'Gönder butonuna tıkladığınızda, kişisel verilerinizin <a href="/datenschutz.html" class="underline hover:text-[color:var(--ink)]">Datenschutzerklärung</a> kapsamında işlenmesini kabul etmiş olursunuz.'
+        }
       },
       de: {
         nav:{about:"Über uns", clients:"Für wen wir arbeiten", services:"Leistungen", faq:"FAQ", cta:"Kontakt"},
@@ -243,7 +250,14 @@
         },
         contact:{title:"Kontakt", text:"Schreiben oder rufen Sie uns gerne an – wir freuen uns auf Ihre Anfrage.", person:"", emailLabel:"E-Mail"},
         footer:"© 2025 Berliva Tax. Alle Rechte vorbehalten.",
-        placeholders:{name:"Ihr Name", mail:"Ihre E-Mail", msg:"Ihre Nachricht", send:"Senden", note:""}
+        placeholders:{
+          name:"Ihr Name",
+          mail:"Ihre E-Mail",
+          msg:"Ihre Nachricht",
+          send:"Senden",
+          note:"",
+          privacy:'Mit Klick auf „Senden“ erklären Sie sich damit einverstanden, dass Ihre Angaben gemäß unserer <a href="/datenschutz.html" class="underline hover:text-[color:var(--ink)]">Datenschutzerklärung</a> zur Bearbeitung Ihrer Anfrage verarbeitet werden.'
+        }
       },
       en: {
         nav:{about:"About", clients:"Who We Serve", services:"Services", faq:"FAQ", cta:"Contact Us"},
@@ -268,7 +282,14 @@
         },
         contact:{title:"Contact", text:"Get in touch for questions or to book an appointment.", person:"", emailLabel:"Email"},
         footer:"© 2025 Berliva Tax. All rights reserved.",
-        placeholders:{name:"Your name", mail:"Your email", msg:"Your message", send:"Send", note:""}
+        placeholders:{
+          name:"Your name",
+          mail:"Your email",
+          msg:"Your message",
+          send:"Send",
+          note:"",
+          privacy:'By clicking “Send”, you agree that your personal data will be processed according to our <a href="/datenschutz.html" class="underline hover:text-[color:var(--ink)]">Privacy Policy</a> for the purpose of handling your request.'
+        }
       }
     };
 
@@ -334,6 +355,7 @@
       document.getElementById("msgInput").placeholder = t.placeholders.msg;
       document.getElementById("sendBtn").textContent   = t.placeholders.send;
       document.getElementById("formNote").textContent  = t.placeholders.note;
+      document.getElementById("privacyText").innerHTML = t.placeholders.privacy;
       document.getElementById("footerText").textContent= t.footer;
 
       const aboutBody = document.querySelector('[data-i="about.body"]');
@@ -450,7 +472,7 @@ form?.addEventListener('submit', async (e) => {
       note.textContent = 'Mesaj gönderildi ✔️';
       form.reset();
     } else {
-      note.textContent = 'Gönderilemedi ❌ Lütfen e-postayla ulaşın: berliva-tax@outlook.de';
+      note.textContent = 'Gönderilemedi ❌ Lütfen e-postayla ulaşın: info@berliva-tax.de';
     }
   } catch {
     note.textContent = 'Ağ hatası ❌ Biraz sonra tekrar deneyin.';
