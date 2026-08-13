@@ -163,9 +163,16 @@
         </div>
 
         <form id="contactForm" class="grid gap-3">
-          <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="nameInput" placeholder="Adınız" required />
+          <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="nameInput" placeholder="Ad Soyad" required />
           <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="mailInput" placeholder="E-postanız" type="email" required />
-          <textarea rows="4" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="msgInput" placeholder="Mesajınız"></textarea>
+          <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="phoneInput" placeholder="Telefon numaranız (opsiyonel)" type="tel" />
+          <p id="phoneHelp" class="text-xs text-[color:var(--muted)]"></p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="availability1Input" placeholder="Ulaşılabilir zaman 1 (opsiyonel)" />
+            <input class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="availability2Input" placeholder="Ulaşılabilir zaman 2 (opsiyonel)" />
+          </div>
+          <p id="availabilityHelp" class="text-xs text-[color:var(--muted)]"></p>
+          <textarea rows="4" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 ring-accent" id="msgInput" placeholder="Mesajınız" required></textarea>
           <button class="rounded-lg bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white ring-1 ring-accent hover:brightness-110" id="sendBtn">Gönder</button>
           <p id="privacyText" class="text-xs text-[color:var(--muted)] mt-2"></p>
           <p class="text-xs text-[color:var(--muted)]" id="formNote"></p>
@@ -219,8 +226,13 @@
         contact:{title:"İletişim", text:"Sorularınız ve randevu talepleriniz için bize ulaşın.", person:"", emailLabel:"E-posta"},
         footer:"© 2025 Berliva Tax. Tüm hakları saklıdır.",
         placeholders:{
-          name:"Adınız",
+          name:"Ad Soyad",
           mail:"E-postanız",
+          phone:"Telefon numaranız (opsiyonel)",
+          availability1:"Ulaşılabilir zaman dilimi 1 (opsiyonel)",
+          availability2:"Ulaşılabilir zaman dilimi 2 (opsiyonel)",
+          phoneHelp:"Almanya’da vergi konuları kişiye ve işletmeye göre değişebildiğinden, size daha sağlıklı danışmanlık sunabilmemiz ve süreci doğru yönlendirebilmemiz için telefon numaranızı paylaşmanız faydalıdır.",
+          availabilityHelp:"Size ulaşabileceğimiz en az iki zaman dilimi belirtmeniz faydalıdır. Mümkünse seçeneklerden birinin öğleden sonra olmasını rica ederiz.",
           msg:"Mesajınız",
           send:"Gönder",
           note:"",
@@ -251,8 +263,13 @@
         contact:{title:"Kontakt", text:"Schreiben oder rufen Sie uns gerne an – wir freuen uns auf Ihre Anfrage.", person:"", emailLabel:"E-Mail"},
         footer:"© 2025 Berliva Tax. Alle Rechte vorbehalten.",
         placeholders:{
-          name:"Ihr Name",
+          name:"Vor- und Nachname",
           mail:"Ihre E-Mail",
+          phone:"Ihre Telefonnummer (optional)",
+          availability1:"Erreichbarkeit 1 (optional)",
+          availability2:"Erreichbarkeit 2 (optional)",
+          phoneHelp:"Da steuerliche Themen in Deutschland stark von der persönlichen bzw. betrieblichen Situation abhängen, hilft uns Ihre Telefonnummer dabei, Sie fundierter zu beraten und den weiteren Ablauf gezielt zu koordinieren.",
+          availabilityHelp:"Bitte nennen Sie uns nach Möglichkeit mindestens zwei Zeitfenster, in denen wir Sie erreichen können. Wenn möglich, freuen wir uns über ein Zeitfenster am Nachmittag.",
           msg:"Ihre Nachricht",
           send:"Senden",
           note:"",
@@ -283,8 +300,13 @@
         contact:{title:"Contact", text:"Get in touch for questions or to book an appointment.", person:"", emailLabel:"Email"},
         footer:"© 2025 Berliva Tax. All rights reserved.",
         placeholders:{
-          name:"Your name",
+          name:"Full name",
           mail:"Your email",
+          phone:"Your phone number (optional)",
+          availability1:"Availability window 1 (optional)",
+          availability2:"Availability window 2 (optional)",
+          phoneHelp:"Because tax matters in Germany vary significantly depending on the individual or business situation, providing your phone number helps us give more accurate guidance and coordinate the process effectively.",
+          availabilityHelp:"If possible, please provide at least two time windows when we can reach you. We would appreciate it if one of them is in the afternoon.",
           msg:"Your message",
           send:"Send",
           note:"",
@@ -352,6 +374,11 @@
 
       document.getElementById("nameInput").placeholder = t.placeholders.name;
       document.getElementById("mailInput").placeholder = t.placeholders.mail;
+      document.getElementById("phoneInput").placeholder = t.placeholders.phone;
+      document.getElementById("availability1Input").placeholder = t.placeholders.availability1;
+      document.getElementById("availability2Input").placeholder = t.placeholders.availability2;
+      document.getElementById("phoneHelp").textContent = t.placeholders.phoneHelp;
+      document.getElementById("availabilityHelp").textContent = t.placeholders.availabilityHelp;
       document.getElementById("msgInput").placeholder = t.placeholders.msg;
       document.getElementById("sendBtn").textContent   = t.placeholders.send;
       document.getElementById("formNote").textContent  = t.placeholders.note;
@@ -384,11 +411,11 @@
         {q:"Yeni mükellef veya danışan kabul ediyor musunuz?", a:"Evet, ekibimizin şu an için kapasitesi bulunmaktadır. İşlemin türüne ve kapsamına göre yeni mükellef/danışan kabul ediyoruz."},
         {q:"Sizin mükellefiniz veya danışanınız olmak için ne yapmam gerekiyor?", a:"Bize e-posta veya telefon yoluyla ulaştığınızda sizi arayarak durumunuzu birlikte değerlendiriyoruz. Danışmanlık veya yapılacak işlemlere göre süreç hızlı ve sorunsuz şekilde ilerlemektedir."},
         {q:"Hangi dillerde hizmet alabilirim?", a:"Hizmetlerimizi öncelikli olarak Almanca ve Türkçe dillerinde sunuyoruz. Ayrıca, yazılı olarak İngilizce dilinde de destek sağlamaktayız."},
-        {q:"Ücretlendirmeyi nasıl yapıyorsunuz?", a:"İlk görüşmemiz tamamen ücretsizdir. Genel olarak ücretlendirme, yapılacak işlem veya danışmanlık hizmetinin kapsamına göre belirlenir. Her işlem için net ve şeffaf bilgilendirme yapılır."},
+        {q:"Ücretlendirmeyi nasıl yapıyorsunuz?", a:"Ücretlendirme, yapılacak işlem veya danışmanlık hizmetinin türü ve kapsamına göre belirlenir. Her işlem için net ve şeffaf bilgilendirme yapılır."},
         {q:"Görüşmelerinizi nasıl gerçekleştiriyorsunuz?", a:"Görüşmelerimizi çoğunlukla online olarak yapıyoruz. İşlemlerimizi dijital ve kağıtsız ortamda yürütüyoruz. Bu sayede süreçler daha hızlı, kolay ve erişilebilir hale geliyor."},
         {q:"Berlin dışında yaşıyorum. Yine de sizinle çalışabilir miyim?", a:"Evet, bu bizim için hiçbir sorun teşkil etmez. Almanya’nın herhangi bir yerinden veya yurt dışından bizimle çalışabilirsiniz. Tüm süreçler dijital olarak yürütülmektedir."}
       ],
-      note:"👉 İlk görüşmeniz ücretsizdir.  📩 Bizimle iletişime geçerek süreci kolayca başlatabilirsiniz."
+      note:"📩 Bizimle iletişime geçerek süreci kolayca başlatabilirsiniz."
     };
     content.de.faq = {
       title:"Häufig gestellte Fragen",
@@ -396,11 +423,11 @@
         {q:"Nehmen Sie neue Mandanten oder Klienten an?", a:"Ja, unser Team hat derzeit Kapazitäten. Je nach Art und Umfang des Vorgangs nehmen wir neue Mandanten/Klienten an."},
         {q:"Wie kann ich Ihr Mandant oder Klient werden?", a:"Wenn Sie uns per E-Mail oder Telefon kontaktieren, rufen wir Sie zurück und besprechen Ihre Situation gemeinsam. Je nach Beratungsbedarf verläuft der Prozess schnell und reibungslos."},
         {q:"In welchen Sprachen kann ich Ihre Dienstleistungen in Anspruch nehmen?", a:"Unsere Dienstleistungen bieten wir hauptsächlich auf Deutsch und Türkisch an. Zusätzlich stellen wir schriftliche Unterstützung auch auf Englisch zur Verfügung."},
-        {q:"Wie erfolgt die Preisgestaltung?", a:"Das erste Gespräch ist kostenlos. Die Preisgestaltung richtet sich nach Art und Umfang der gewünschten Dienstleistung. Alle Kosten werden klar und transparent kommuniziert."},
+        {q:"Wie erfolgt die Preisgestaltung?", a:"Die Preisgestaltung richtet sich nach Art und Umfang der gewünschten Dienstleistung. Alle Kosten werden klar und transparent kommuniziert."},
         {q:"Wie führen Sie die Gespräche durch?", a:"In der Regel online. Digital und papierlos, schnell und flexibel."},
         {q:"Ich wohne nicht in Berlin. Kann ich trotzdem mit Ihnen zusammenarbeiten?", a:"Ja. Wir betreuen Mandanten deutschlandweit und im Ausland. Alle Prozesse erfolgen digital."}
       ],
-      note:"👉 Das erste Gespräch ist kostenlos.  📩 Kontaktieren Sie uns, um den Prozess einfach zu starten."
+      note:"📩 Kontaktieren Sie uns, um den Prozess einfach zu starten."
     };
     content.en.faq = {
       title:"Frequently Asked Questions",
@@ -408,11 +435,11 @@
         {q:"Do you accept new clients?", a:"Yes, our team currently has capacity. Depending on the type and scope of the case, we accept new clients."},
         {q:"How can I become your client?", a:"When you contact us via email or phone, we call you back to review your situation together. The process continues quickly and smoothly."},
         {q:"In which languages can I receive your services?", a:"We primarily provide our services in German and Turkish. In addition, we offer written support in English."},
-        {q:"How do you determine your pricing?", a:"The first consultation is completely free. Pricing depends on the type and scope of the service. All costs are communicated clearly and transparently."},
+        {q:"How do you determine your pricing?", a:"Pricing depends on the type and scope of the service. All costs are communicated clearly and transparently."},
         {q:"How do you conduct consultations?", a:"We usually conduct our consultations online. Our processes are digital and paperless."},
         {q:"I don’t live in Berlin. Can I still work with you?", a:"Yes. We work with clients across Germany and abroad. All processes are handled digitally."}
       ],
-      note:"👉 Your first consultation is free.  📩 Contact us to get started easily."
+      note:"📩 Contact us to get started easily."
     };
 
     function renderFAQ(lang){
@@ -456,10 +483,20 @@ form?.addEventListener('submit', async (e) => {
   btn.disabled = true; btn.textContent = 'Gönderiliyor…';
   note.textContent = '';
 
+  const phone = document.getElementById('phoneInput').value.trim();
+  const availability1 = document.getElementById('availability1Input').value.trim();
+  const availability2 = document.getElementById('availability2Input').value.trim();
+  const baseMessage = document.getElementById('msgInput').value.trim();
+
+  const extraLines = [];
+  if (phone) extraLines.push(`Telefon / Phone: ${phone}`);
+  if (availability1) extraLines.push(`Ulaşılabilir zaman / Availability 1: ${availability1}`);
+  if (availability2) extraLines.push(`Ulaşılabilir zaman / Availability 2: ${availability2}`);
+
   const payload = {
     name: document.getElementById('nameInput').value.trim(),
     email: document.getElementById('mailInput').value.trim(),
-    message: document.getElementById('msgInput').value.trim()
+    message: extraLines.length ? `${baseMessage}\n\n${extraLines.join('\n')}` : baseMessage
   };
 
   try {
