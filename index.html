@@ -20,6 +20,58 @@
     .ring-accent{--tw-ring-color:var(--ring)}
     .svc-card{cursor:default; box-shadow:none; display:flex; flex-direction:column; height:100%}
     .svc-card:hover{box-shadow:none; transform:none}
+
+    /* BERLIVA TAX: Google reviews trust badge */
+    .google-review-badge{
+      position:fixed;right:22px;bottom:22px;z-index:40;
+      width:162px;padding:15px 12px 13px;
+      display:flex;flex-direction:column;align-items:center;gap:5px;
+      border:1px solid #e2e8f0;border-radius:15px;
+      background:#fff;color:var(--ink);text-align:center;text-decoration:none;
+      box-shadow:0 7px 28px rgba(15,30,58,.13);
+      transition:transform .18s ease,box-shadow .18s ease;
+    }
+    .google-review-badge:hover{
+      transform:translateY(-3px);
+      box-shadow:0 11px 34px rgba(15,30,58,.19);
+    }
+    .google-review-badge:focus-visible{
+      outline:3px solid var(--accent);outline-offset:3px;
+    }
+    .google-review-badge__source{
+      font-size:12px;font-weight:700;letter-spacing:.01em;color:#536074;
+    }
+    .google-review-badge__stars{
+      color:#f5aa24;font-size:18px;letter-spacing:1px;line-height:1.1;
+    }
+    .google-review-badge__score{
+      display:flex;align-items:baseline;gap:4px;line-height:1;
+      font-size:25px;font-weight:800;color:var(--ink);
+    }
+    .google-review-badge__score small{
+      font-size:12px;font-weight:500;color:#64748b;
+    }
+    .google-review-badge__count{
+      font-size:11px;font-weight:500;color:var(--muted);
+    }
+    .google-review-badge__cta{
+      border-top:1px solid #e2e8f0;margin-top:5px;padding-top:8px;
+      width:100%;font-size:11px;font-weight:700;color:var(--accent);
+    }
+    @media(max-width:640px){
+      .google-review-badge{
+        right:12px;bottom:calc(12px + env(safe-area-inset-bottom, 0px));
+        width:148px;padding:10px 9px;gap:4px;border-radius:13px;
+      }
+      .google-review-badge__stars{font-size:16px}
+      .google-review-badge__score{font-size:22px}
+      .google-review-badge__cta{display:none}
+      .google-review-badge__count{font-size:10px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .google-review-badge{transition:none}
+      .google-review-badge:hover{transform:none}
+    }
   </style>
 </head>
 <body class="min-h-screen selection:bg-blue-200/40">
@@ -194,6 +246,23 @@
       </div>
     </div>
   </footer>
+
+  <!-- Google rating manually captured on 2026-09-20: 5.0/5, 76 reviews.
+       Update these values if the business profile changes. This badge
+       does not embed Google scripts, tracking, or Places API requests. -->
+  <a id="googleReviewBadge" class="google-review-badge"
+     href="https://share.google/2MZXaz5WoP80XdvIT"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Berliva Tax: 5 üzerinden 5, 76 Google yorumu">
+    <span class="google-review-badge__source">Google Maps</span>
+    <span class="google-review-badge__stars" aria-hidden="true">★★★★★</span>
+    <span class="google-review-badge__score">
+      <strong id="googleReviewScore">5,0</strong><small>/ 5</small>
+    </span>
+    <span id="googleReviewCount" class="google-review-badge__count">76 Google yorumu</span>
+    <span id="googleReviewCTA" class="google-review-badge__cta">Yorumları gör ↗</span>
+  </a>
+
 
   <script>
     const content = {
@@ -463,8 +532,22 @@
       if(note) note.textContent = f.note || "";
     }
 
+
+    const googleReviewLocales = {
+      tr:{count:"76 Google yorumu",cta:"Yorumları gör ↗",aria:"Berliva Tax: 5 üzerinden 5, 76 Google yorumu"},
+      de:{count:"76 Google-Bewertungen",cta:"Bewertungen ansehen ↗",aria:"Berliva Tax: 5 von 5, 76 Google-Bewertungen"},
+      en:{count:"76 Google reviews",cta:"Read reviews ↗",aria:"Berliva Tax: 5 out of 5, 76 Google reviews"}
+    };
+    function renderReviewBadge(lang){
+      const copy=googleReviewLocales[lang]||googleReviewLocales.tr;
+      document.getElementById("googleReviewScore").textContent=lang==="en"?"5.0":"5,0";
+      document.getElementById("googleReviewCount").textContent=copy.count;
+      document.getElementById("googleReviewCTA").textContent=copy.cta;
+      document.getElementById("googleReviewBadge").setAttribute("aria-label",copy.aria);
+    }
+
     const __render_orig = render;
-    render = function(lang){ __render_orig(lang); renderFAQ(lang); };
+    render = function(lang){ __render_orig(lang); renderFAQ(lang); renderReviewBadge(lang); };
 
     document.querySelectorAll(".langbtn").forEach(btn=>{
       btn.addEventListener("click", ()=>render(btn.getAttribute("data-lang")));
